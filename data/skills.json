@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 07:20 UTC",
+  "synced": "2026-11-12 07:38 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -7,6 +7,7 @@
       "description": "Works out allowable trip costs, takes proof screenshots and fills the Kuali travel authorization as a draft for you to submit.",
       "link": "https://github.com/nidhi23aug/uah-travel-skill",
       "made_by": "Nidhi Jha",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": true,
       "suggestions": []
@@ -17,6 +18,7 @@
       "description": "Puts together the reimbursement packet after the trip.",
       "link": "https://github.com/nidhi23aug/uah-travel-skill",
       "made_by": "Nidhi Jha",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": true,
       "suggestions": []
@@ -27,6 +29,7 @@
       "description": "",
       "link": "",
       "made_by": "",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
       "suggestions": [
@@ -43,7 +46,8 @@
       "description": "Turns the project you built into a short launch video with music and share copy.",
       "link": "https://github.com/latent-spaces/brag",
       "made_by": "latent-spaces",
-      "added_by": "Nidhi Jha",
+      "suggested_by": "Sujit Roy",
+      "added_by": "Sujit Roy",
       "caution": false,
       "suggestions": []
     },
@@ -53,7 +57,8 @@
       "description": "Turns scientific text into a checked illustration plan, an image prompt and an SVG or image.",
       "link": "https://github.com/NASA-IMPACT/akd-scientific-illustration/blob/main/Version2/final_prompt_v2.md",
       "made_by": "NASA-IMPACT",
-      "added_by": "Nidhi Jha",
+      "suggested_by": "Rahul Ramachandran",
+      "added_by": "Rahul Ramachandran",
       "caution": false,
       "suggestions": []
     },
@@ -63,6 +68,7 @@
       "description": "Makes AI-written text sound like a person wrote it, without changing what it says.",
       "link": "https://github.com/blader/humanizer",
       "made_by": "blader",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
       "suggestions": []
@@ -73,6 +79,7 @@
       "description": "Systematic, scoping and narrative reviews from PubMed, arXiv and Semantic Scholar.",
       "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review",
       "made_by": "K-Dense",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
       "suggestions": []
@@ -83,6 +90,7 @@
       "description": "Drafts a structured review of a manuscript or proposal.",
       "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review",
       "made_by": "K-Dense",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
       "suggestions": []
@@ -93,6 +101,7 @@
       "description": "Design a new agent or skill in a structured way in about 20 minutes.",
       "link": "https://github.com/nidhi23aug/CARE-lightweight/",
       "made_by": "Nidhi Jha, based on NASA-IMPACT/AKD-CARE",
+      "suggested_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
       "suggestions": []
@@ -103,6 +112,7 @@
       "description": "A live map beside the Claude Code chat that shows tool calls, model steps, hooks, skills and subagents as they happen",
       "link": "https://github.com/alexeyw/lot-map",
       "made_by": "",
+      "suggested_by": "",
       "added_by": "Test submission, Testing",
       "caution": false,
       "suggestions": []
