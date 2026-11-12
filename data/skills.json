@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 16:05 UTC",
+  "synced": "2026-11-12 16:26 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -9,7 +9,8 @@
       "made_by": "Nidhi Jha",
       "added_by": "Nidhi Jha",
       "caution": true,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Travel Voucher Submission",
@@ -19,7 +20,8 @@
       "made_by": "Nidhi Jha",
       "added_by": "Nidhi Jha",
       "caution": true,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Lightweight version of Google Paper",
@@ -35,7 +37,8 @@
           "text": "Please remove this skill. It has no link or description.",
           "by": "Test submission, Testing"
         }
-      ]
+      ],
+      "removal_requested": false
     },
     {
       "name": "Brag",
@@ -45,7 +48,8 @@
       "made_by": "latent-spaces",
       "added_by": "Sujit Roy",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Diagram/Sketch Generator",
@@ -55,7 +59,8 @@
       "made_by": "NASA-IMPACT",
       "added_by": "Rahul Ramachandran",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Humanizer",
@@ -65,7 +70,8 @@
       "made_by": "blader",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Literature Review",
@@ -75,7 +81,8 @@
       "made_by": "K-Dense",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Peer Review",
@@ -85,7 +92,8 @@
       "made_by": "K-Dense",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Brga",
@@ -95,7 +103,8 @@
       "made_by": "",
       "added_by": "Nidhi, ODSI Bga.com",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "CARE Lightweight",
@@ -105,7 +114,8 @@
       "made_by": "Nidhi Jha, based on NASA-IMPACT/AKD-CARE",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "lot-map",
@@ -115,7 +125,8 @@
       "made_by": "",
       "added_by": "Test submission, Testing",
       "caution": false,
-      "suggestions": []
+      "suggestions": [],
+      "removal_requested": false
     }
   ]
 }
