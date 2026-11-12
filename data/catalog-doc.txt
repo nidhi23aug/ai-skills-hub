@@ -2,7 +2,6 @@ Administrative for Research
 - Travel Authorization - Works out allowable trip costs, takes proof screenshots and fills the Kuali travel authorization as a draft for you to submit. - Added by Nidhi Jha https://github.com/nidhi23aug/uah-travel-skill
 - Travel Voucher Submission - Puts together the reimbursement packet after the trip.- Coming Soon
 
-
 Research
 - Lightweight version of Google Paper   - Added by Nidhi Jha
 - Brag - Turns the project you built into a short launch video with music and share copy. - Added by Sujit Roy https://github.com/latent-spaces/brag
