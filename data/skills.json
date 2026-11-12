@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 07:49 UTC",
+  "synced": "2026-11-12 16:05 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -84,6 +84,16 @@
       "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review",
       "made_by": "K-Dense",
       "added_by": "Nidhi Jha",
+      "caution": false,
+      "suggestions": []
+    },
+    {
+      "name": "Brga",
+      "category": "Research",
+      "description": "Used for video",
+      "link": "",
+      "made_by": "",
+      "added_by": "Nidhi, ODSI Bga.com",
       "caution": false,
       "suggestions": []
     },
