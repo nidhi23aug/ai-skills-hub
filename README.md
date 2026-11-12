@@ -40,5 +40,7 @@ To push a doc edit right away instead of waiting up to 15 minutes, run `pushDoc`
 ## Notes
 
 - Form answers go straight into the catalog with no approval step. To take something down, delete its line in the doc.
+- Anyone can ask for a skill to be removed through the "Suggest a change" form. The skill then shows "Removal requested" until the owner deletes its line (and the request line) in the doc.
+- Each skill has a thumbs-up button. Counts are kept by the Apps Script web app (step 4 in `apps-script/Code.gs`), and each browser remembers its own vote. It is a light signal, not a secure poll.
 - Contributor names and departments appear publicly on the site. The form descriptions tell people this.
 - Being listed means a colleague found the skill useful. It does not mean the university has security-reviewed it. Skills that touch university systems carry a caution note.

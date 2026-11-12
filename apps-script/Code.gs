@@ -8,10 +8,15 @@
  *   3. Run setup() once and approve the permissions.
  *      It creates both forms, connects them to the doc, puts the form links on the website,
  *      and starts a 15-minute sync so direct edits to the doc also reach the site.
+ *   4. For thumbs up: Deploy > New deployment > Web app, execute as me, access Anyone.
+ *      Then run setup() again so the website learns the web app link.
  */
 
 const DOC_ID = '1bT6SFk4EVgH5hnZZ7UzaigVISetCJ5FPaJldhzX-2CI';
 const REPO = 'nidhi23aug/ai-skills-hub';
+const SITE = 'https://nidhi23aug.github.io/ai-skills-hub/';
+const KIND = 'What would you like to do?';
+const REMOVE = 'Remove this skill';
 const CATEGORIES = ['Research', 'Administrative for Research', 'General', 'Teaching and Education', 'Software and Development'];
 
 function setup() {
@@ -46,7 +51,7 @@ function setup() {
       'Your suggestion appears under the skill with your name.')
     .setConfirmationMessage('Thanks! Your suggestion will appear in the catalog within a few minutes.');
   sug.addTextItem().setTitle('Skill name').setRequired(true);
-  sug.addParagraphTextItem().setTitle('Your suggestion').setRequired(true);
+  sug.addParagraphTextItem().setTitle('Your suggestion').setHelpText('What should change, or why the skill should be removed.').setRequired(true);
   sug.addTextItem().setTitle('Your name').setRequired(true);
   sug.addTextItem().setTitle('Department');
 
@@ -62,12 +67,25 @@ function findForm(title) {
   return null;
 }
 
+/** Adds the "suggest or remove" question to the suggest form if it is not there yet. */
+function ensureRemovalChoice(sug) {
+  if (sug.getItems().some(i => i.getTitle() === KIND)) return;
+  const item = sug.addMultipleChoiceItem().setTitle(KIND)
+    .setChoiceValues(['Suggest a change', REMOVE]).setRequired(true);
+  sug.moveItem(item.getIndex(), 1);
+  sug.setDescription('Suggest an improvement, report a broken link, flag an outdated step or ask for a skill to be removed. ' +
+    'Your note appears under the skill with your name. Removals happen after the catalog owner reviews them.');
+}
+
 function finishSetup(add, sug) {
+  ensureRemovalChoice(sug);
   ScriptApp.newTrigger('onAddSkill').forForm(add).onFormSubmit().create();
   ScriptApp.newTrigger('onSuggest').forForm(sug).onFormSubmit().create();
   ScriptApp.newTrigger('pushDoc').timeBased().everyMinutes(15).create();
 
   const config = { addFormUrl: add.getPublishedUrl(), suggestFormUrl: sug.getPublishedUrl() };
+  const webApp = ScriptApp.getService().getUrl();
+  if (webApp) config.votesUrl = webApp;
   githubPut('config.json', JSON.stringify(config, null, 2) + '\n', 'Connect the Google Forms');
   pushDoc();
 
@@ -102,7 +120,9 @@ function onAddSkill(e) {
 function onSuggest(e) {
   const a = answers(e);
   const who = clean(a['Your name']) + (a['Department'] ? ', ' + clean(a['Department']) : '');
-  const text = clean(a['Skill name']) + ': ' + clean(a['Your suggestion']) + ' - Suggested by ' + who;
+  const removal = a[KIND] === REMOVE;
+  const text = clean(a['Skill name']) + ': ' + (removal ? 'Removal requested. ' : '') +
+    clean(a['Your suggestion']) + ' - Suggested by ' + who;
   withLock(() => {
     addBullet('Suggestions', text, '');
     pushDoc();
@@ -184,4 +204,38 @@ function githubPut(path, content, message) {
       content: Utilities.base64Encode(content, Utilities.Charset.UTF_8) })
   });
   if (res.getResponseCode() >= 300) throw new Error('GitHub update failed: ' + res.getContentText());
+}
+
+/* ---------- Thumbs up ----------
+ * The site calls the web app: ?action=vote&skill=Name (or unvote), or no action to read the counts.
+ * Counts live in Script Properties under "votes" as {slug: count}. Only names on the site count.
+ */
+function slug(name) {
+  return String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function knownSkills() {
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get('skills');
+  if (hit) return JSON.parse(hit);
+  const res = UrlFetchApp.fetch(SITE + 'data/skills.json', { muteHttpExceptions: true });
+  const names = res.getResponseCode() === 200 ? JSON.parse(res.getContentText()).skills.map(s => slug(s.name)) : [];
+  cache.put('skills', JSON.stringify(names), 300);
+  return names;
+}
+
+function doGet(e) {
+  const p = (e && e.parameter) || {};
+  const props = PropertiesService.getScriptProperties();
+  let votes = JSON.parse(props.getProperty('votes') || '{}');
+  const key = slug(p.skill);
+  if ((p.action === 'vote' || p.action === 'unvote') && key && knownSkills().indexOf(key) !== -1) {
+    withLock(() => {
+      votes = JSON.parse(props.getProperty('votes') || '{}');
+      votes[key] = Math.max(0, (votes[key] || 0) + (p.action === 'vote' ? 1 : -1));
+      props.setProperty('votes', JSON.stringify(votes));
+    });
+  }
+  return ContentService.createTextOutput(JSON.stringify({ votes: votes }))
+    .setMimeType(ContentService.MimeType.JSON);
 }

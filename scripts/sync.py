@@ -5,6 +5,7 @@ Doc layout: a category name on its own line, then one "- " bullet per skill:
     - Skill name - short description - Added by Name, Department https://link
 A "Suggestions" heading holds bullets like:
     - Skill name: the suggestion - Suggested by Name, Department
+A suggestion that starts with "Removal requested" marks the skill for removal.
 data/seed.json adds curated details (description, who made it) for known skills.
 Standard library only.
 """
@@ -68,6 +69,7 @@ def main():
     catalog = []
     for item in items:
         s = seed.get(slug(item["name"]), {})
+        mine = [x for x in suggestions if slug(x["skill"]) == slug(item["name"])]
         catalog.append({
             "name": item["name"],
             "category": item["category"],
@@ -77,7 +79,8 @@ def main():
             "made_by": s.get("made_by", ""),
             "added_by": item.get("added_by") or s.get("added_by", ""),
             "caution": bool(s.get("caution")),
-            "suggestions": [x for x in suggestions if slug(x["skill"]) == slug(item["name"])],
+            "suggestions": mine,
+            "removal_requested": any(x["text"].lower().startswith("removal requested") for x in mine),
         })
 
     path = os.path.join(ROOT, "data", "skills.json")

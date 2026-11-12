@@ -44,6 +44,14 @@ a.name::after{content:" \2197";color:var(--accent);font-size:14px}
 .warn{font-size:13px;color:var(--warn)}
 .sug{font-size:13px;color:var(--muted);margin:4px 0 0;padding-left:10px;border-left:2px solid var(--accent-soft)}
 .empty{color:var(--muted)}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:2px}
+.vote{display:inline-flex;align-items:center;gap:6px;font:500 14px var(--body);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer;min-height:32px}
+.vote svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+.vote:hover{border-color:var(--accent);color:var(--accent)}
+.vote[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.vote[aria-pressed="true"] svg{fill:currentColor}
+.vote:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.removal{font-size:13px;font-weight:600;color:var(--warn)}
 footer{color:var(--muted);font-size:13px;padding-block:24px 40px}
 </style>
 </head>
@@ -63,7 +71,12 @@ footer{color:var(--muted);font-size:13px;padding-block:24px 40px}
 </div>
 <script>
 const ORDER=["Research","Administrative for Research","General","Teaching and Education","Software and Development"];
-let skills=[];
+let skills=[], votes={}, votesUrl="";
+const slug=n=>String(n||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+let voted=new Set();
+try{voted=new Set(JSON.parse(localStorage.getItem("voted")||"[]"))}catch(e){}
+const saveVoted=()=>{try{localStorage.setItem("voted",JSON.stringify([...voted]))}catch(e){}};
+const THUMB='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H3V10h4zm0 0l4-8a3 3 0 0 1 3 3v4h5.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.1 21H7"/></svg>';
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function render(){
   const q=document.getElementById("q").value.trim().toLowerCase();
@@ -74,16 +87,29 @@ function render(){
     return `<section><h2>${esc(c)} <span>${items.length}</span></h2><ul>${items.map(s=>{
       const name=/^https?:\/\//.test(s.link||"")?`<a class="name" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:`<span class="name">${esc(s.name)}</span>`;
       const by=[s.made_by&&`Made by ${s.made_by}`,s.added_by&&`Added by ${s.added_by}`].filter(Boolean).join(" · ");
-      return `<li>${name}<p class="desc">${esc(s.description||"Details coming soon.")}</p>${by?`<span class="by">${esc(by)}</span>`:""}${s.caution?'<span class="warn">Uses university systems. Follow university IT and data policies.</span>':""}${(s.suggestions||[]).map(x=>`<p class="sug">${esc(x.text)}${x.by?` (suggested by ${esc(x.by)})`:""}</p>`).join("")}</li>`;
+      const k=slug(s.name), n=votes[k]||0, on=voted.has(k);
+      const vote=votesUrl?`<button class="vote" type="button" data-skill="${esc(s.name)}" aria-pressed="${on}" aria-label="Thumbs up for ${esc(s.name)}, ${n} so far">${THUMB}<span>${n}</span></button>`:"";
+      return `<li>${name}<p class="desc">${esc(s.description||"Details coming soon.")}</p>${s.removal_requested?'<span class="removal">Removal requested. The catalog owner will review it.</span>':""}${by||vote?`<div class="meta"><span class="by">${esc(by)}</span>${vote}</div>`:""}${s.caution?'<span class="warn">Uses university systems. Follow university IT and data policies.</span>':""}${(s.suggestions||[]).map(x=>`<p class="sug">${esc(x.text)}${x.by?` (suggested by ${esc(x.by)})`:""}</p>`).join("")}</li>`;
     }).join("")}</ul></section>`;
   }).join(""):'<p class="empty">Nothing matches that search. Try another word, or add the skill yourself.</p>';
 }
 document.getElementById("q").addEventListener("input",render);
+document.getElementById("list").addEventListener("click",e=>{
+  const b=e.target.closest(".vote"); if(!b||!votesUrl)return;
+  const name=b.dataset.skill, k=slug(name), action=voted.has(k)?"unvote":"vote";
+  if(action==="vote")voted.add(k);else voted.delete(k);
+  votes[k]=Math.max(0,(votes[k]||0)+(action==="vote"?1:-1));
+  saveVoted(); render();
+  document.querySelector(`.vote[data-skill="${CSS.escape(name)}"]`)?.focus();
+  fetch(`${votesUrl}?action=${action}&skill=${encodeURIComponent(name)}`).then(r=>r.json()).then(d=>{if(d&&d.votes){votes=d.votes;render();document.querySelector(`.vote[data-skill="${CSS.escape(name)}"]`)?.focus();}}).catch(()=>{});
+});
 Promise.all([
   fetch("data/skills.json",{cache:"no-store"}).then(r=>r.json()),
   fetch("config.json",{cache:"no-store"}).then(r=>r.json()).catch(()=>({}))
 ]).then(([data,cfg])=>{
   skills=data.skills||[];
+  votesUrl=cfg.votesUrl||"";
+  if(votesUrl)fetch(votesUrl).then(r=>r.json()).then(d=>{votes=(d&&d.votes)||{};render();}).catch(()=>{});
   document.querySelectorAll("[data-form]").forEach(a=>{
     const url=cfg[a.dataset.form];
     if(url)a.href=url;else{a.setAttribute("aria-disabled","true");a.title="The form isn't connected yet";a.addEventListener("click",e=>e.preventDefault());}
