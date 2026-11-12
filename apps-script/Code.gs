@@ -10,7 +10,7 @@
  *      and starts a 15-minute sync so direct edits to the doc also reach the site.
  */
 
-const DOC_ID = '1qxDmLZrZBAEgMdAEvEhQBPTSILKeA01k-tW5cJKe5TI';
+const DOC_ID = '1bT6SFk4EVgH5hnZZ7UzaigVISetCJ5FPaJldhzX-2CI';
 const REPO = 'nidhi23aug/ai-skills-hub';
 const CATEGORIES = ['Research', 'Administrative for Research', 'General', 'Teaching and Education', 'Software and Development'];
 

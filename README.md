@@ -7,7 +7,7 @@ Live site: https://nidhi23aug.github.io/ai-skills-hub/
 ## How it works
 
 ```
-Google Form  ->  "ESSC AI Harness" Google Doc  ->  GitHub (data/catalog-doc.txt)  ->  website
+Google Form  ->  "AI Skills Hub Catalog" Google Doc  ->  GitHub (data/catalog-doc.txt)  ->  website
 ```
 
 1. Someone fills in the "Add an AI skill you use" form or the "Suggest a change" form.

@@ -1,6 +1,6 @@
 """Build data/skills.json from the Google Doc catalog.
 
-The Apps Script copies the "ESSC AI Harness" Google Doc to data/catalog-doc.txt.
+The Apps Script copies the "AI Skills Hub Catalog" Google Doc to data/catalog-doc.txt.
 Doc layout: a category name on its own line, then one "- " bullet per skill:
     - Skill name - short description - Added by Name, Department https://link
 A "Suggestions" heading holds bullets like:
