@@ -67,13 +67,13 @@ let skills=[];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function render(){
   const q=document.getElementById("q").value.trim().toLowerCase();
-  const shown=skills.filter(s=>!q||[s.name,s.category,s.description,s.made_by,s.suggested_by,s.added_by].join(" ").toLowerCase().includes(q));
+  const shown=skills.filter(s=>!q||[s.name,s.category,s.description,s.made_by,s.added_by].join(" ").toLowerCase().includes(q));
   const cats=[...ORDER,...new Set(shown.map(s=>s.category))].filter((c,i,a)=>a.indexOf(c)===i&&shown.some(s=>s.category===c));
   document.getElementById("list").innerHTML=cats.length?cats.map(c=>{
     const items=shown.filter(s=>s.category===c);
     return `<section><h2>${esc(c)} <span>${items.length}</span></h2><ul>${items.map(s=>{
       const name=/^https?:\/\//.test(s.link||"")?`<a class="name" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:`<span class="name">${esc(s.name)}</span>`;
-      const by=[s.made_by&&`Made by ${s.made_by}`,s.suggested_by&&`Suggested by ${s.suggested_by}`,s.added_by&&`Added by ${s.added_by}`].filter(Boolean).join(" · ");
+      const by=[s.made_by&&`Made by ${s.made_by}`,s.added_by&&`Added by ${s.added_by}`].filter(Boolean).join(" · ");
       return `<li>${name}<p class="desc">${esc(s.description||"Details coming soon.")}</p>${by?`<span class="by">${esc(by)}</span>`:""}${s.caution?'<span class="warn">Uses university systems. Follow university IT and data policies.</span>':""}${(s.suggestions||[]).map(x=>`<p class="sug">${esc(x.text)}${x.by?` (suggested by ${esc(x.by)})`:""}</p>`).join("")}</li>`;
     }).join("")}</ul></section>`;
   }).join(""):'<p class="empty">Nothing matches that search. Try another word, or add the skill yourself.</p>';

@@ -75,7 +75,6 @@ def main():
             "description": s.get("description") or item.get("description", ""),
             "link": item.get("link") or s.get("link", ""),
             "made_by": s.get("made_by", ""),
-            "suggested_by": s.get("suggested_by", ""),
             "added_by": item.get("added_by") or s.get("added_by", ""),
             "caution": bool(s.get("caution")),
             "suggestions": [x for x in suggestions if slug(x["skill"]) == slug(item["name"])],
