@@ -9,12 +9,14 @@
  *      It creates both forms, connects them to the doc, puts the form links on the website,
  *      and starts a 15-minute sync so direct edits to the doc also reach the site.
  *   4. For thumbs up: Deploy > New deployment > Web app, execute as me, access Anyone.
- *      Then run setup() again so the website learns the web app link.
+ *      Put its /exec link in VOTES_URL below, then run setup() again.
  */
 
 const DOC_ID = '1bT6SFk4EVgH5hnZZ7UzaigVISetCJ5FPaJldhzX-2CI';
 const REPO = 'nidhi23aug/ai-skills-hub';
 const SITE = 'https://nidhi23aug.github.io/ai-skills-hub/';
+// Public link of the thumbs-up web app (Deploy > Manage deployments). Empty until it is deployed.
+const VOTES_URL = 'https://script.google.com/macros/s/AKfycbz3eaFCawQHheqB1LxP3CDzjHMvENN6k_LRDHfVNURwoDvra6mbDFjOZuNU3pkCFMLM6Q/exec';
 const KIND = 'What would you like to do?';
 const REMOVE = 'Remove this skill';
 const CATEGORIES = ['Research', 'Administrative for Research', 'General', 'Teaching and Education', 'Software and Development'];
@@ -84,8 +86,7 @@ function finishSetup(add, sug) {
   ScriptApp.newTrigger('pushDoc').timeBased().everyMinutes(15).create();
 
   const config = { addFormUrl: add.getPublishedUrl(), suggestFormUrl: sug.getPublishedUrl() };
-  const webApp = ScriptApp.getService().getUrl();
-  if (webApp) config.votesUrl = webApp;
+  if (VOTES_URL) config.votesUrl = VOTES_URL;
   githubPut('config.json', JSON.stringify(config, null, 2) + '\n', 'Connect the Google Forms');
   pushDoc();
 
