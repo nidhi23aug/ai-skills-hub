@@ -38,7 +38,7 @@
     "platform": "Claude Code",
     "made_by": "latent-spaces",
     "suggested_by": "Sujit Roy",
-    "added_by": "Nidhi Jha"
+    "added_by": "Sujit Roy"
   },
   {
     "name": "Diagram/Sketch Generator",
@@ -48,7 +48,7 @@
     "platform": "Any chat model (prompt)",
     "made_by": "NASA-IMPACT",
     "suggested_by": "Rahul Ramachandran",
-    "added_by": "Nidhi Jha"
+    "added_by": "Rahul Ramachandran"
   },
   {
     "name": "Humanizer",
