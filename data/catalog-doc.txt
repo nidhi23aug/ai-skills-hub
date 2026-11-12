@@ -17,5 +17,6 @@ General
 - 
 Software and Development
 - lot-map - A live map beside the Claude Code chat that shows tool calls, model steps, hooks, skills and subagents as they happen - Added by Test submission, Testing https://github.com/alexeyw/lot-map
+
 Suggestions
 - Lightweight version of Google Paper: Please remove this skill. It has no link or description. - Suggested by Test submission, Testing
