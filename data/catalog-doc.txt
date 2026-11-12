@@ -1,0 +1,13 @@
+Administrative for Research
+- Travel Authorization - Nidhi Jha https://github.com/nidhi23aug/uah-travel-skill
+- Travel Submission-
+Research
+- Lightweight version of Google Paper
+- Brag - short video for your product- https://github.com/latent-spaces/brag
+- Diagram/Sketch Generator - https://github.com/NASA-IMPACT/akd-scientific-illustration/blob/main/Version2/final_prompt_v2.md
+- Humanizer - https://github.com/blader/humanizer
+- Literature Review - systematic, scoping and narrative reviews from PubMed, arXiv and Semantic Scholar (K-Dense) https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review
+- Peer Review - draft a structured review of a manuscript or proposal (K-Dense) https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review
+General
+- CARE Lightweight - Create a new skill in a structured manner https://github.com/nidhi23aug/CARE-lightweight/
+-

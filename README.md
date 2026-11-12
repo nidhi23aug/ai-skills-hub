@@ -1,67 +1,44 @@
 # University AI Skills Hub
 
-A catalog of AI skills, prompts and workflows that colleagues actually use. Colleagues add skills or suggest changes through Google Forms, so they don't need a GitHub account. Each entry shows who added it, and each suggestion shows who made it.
+A catalog of AI skills, prompts and workflows that colleagues actually use. Anyone can add a skill or suggest a change through a Google Form. Nobody needs a GitHub account.
 
 Live site: https://nidhi23aug.github.io/ai-skills-hub/
 
 ## How it works
 
-1. Someone fills in the "Add a skill" form or the "Suggest a change" form.
-2. Their answer lands in a Google Sheet with a `Status` column. A catalog admin sets `Status` to `Published` after checking that the category fits and the link opens.
-3. Every hour, a GitHub Action (`.github/workflows/sync.yml`) reads the published rows, merges them with `data/seed.json` and commits `data/skills.json`.
-4. GitHub Pages serves the updated page.
+```
+Google Form  ->  "ESSC AI Harness" Google Doc  ->  GitHub (data/catalog-doc.txt)  ->  website
+```
 
-Rows marked anything other than `Published` never reach the site. To publish right away, open Actions, choose "Sync catalog from forms" and click "Run workflow".
+1. Someone fills in the "Add an AI skill you use" form or the "Suggest a change" form.
+2. The Apps Script in `apps-script/Code.gs` adds a bullet to the Google Doc, under the matching category or under a "Suggestions" heading.
+3. The script copies the doc to `data/catalog-doc.txt` in this repo. It does this right after each form answer, and every 15 minutes to pick up direct edits to the doc.
+4. A GitHub Action runs `scripts/sync.py`, which turns the doc into `data/skills.json`, and GitHub Pages updates the site.
 
-## Setting up the forms
+New entries show up on the site a few minutes after someone submits a form.
 
-Create two Google Forms. The question titles must start with the words below, because the sync script matches columns by their opening words.
+The Google Doc is the catalog. To fix, move or remove a skill, edit the doc. Use one line per skill:
 
-**Add a skill**
+```
+Category name
+- Skill name - one short sentence - Added by Name, Department https://link
+```
 
-| Question | Type |
-|---|---|
-| Skill name | Short answer, required |
-| Category | Multiple choice: Research, Administrative for Research, General, Teaching and Education, Software and Development |
-| What does it do? | Paragraph, one or two sentences, required |
-| How do you use it? | Paragraph, required |
-| Where can someone get it? | Short answer (link or where to find it), required |
-| Platform | Multiple choice: Claude, ChatGPT, Codex, Gemini, Platform-independent, Other |
-| Who made it? | Short answer, optional (leave blank if you made it) |
-| Your name | Short answer, required |
-| Department | Short answer |
-| Limitations | Paragraph |
-| Does it use university systems or data? | Yes / No |
-| I have personally used this skill and would recommend it | Checkbox, required |
+`data/seed.json` holds the curated description and "Made by" credit for the starting skills. For any skill listed there, the curated description takes priority over the doc's text.
 
-**Suggest a change**
+## One-time setup
 
-| Question | Type |
-|---|---|
-| Skill name | Short answer, required |
-| Your suggestion | Paragraph (an improvement, a broken link, an outdated step), required |
-| Your name | Short answer, required |
-| Department | Short answer |
+1. Create a fine-grained GitHub token at https://github.com/settings/personal-access-tokens. Limit it to the `nidhi23aug/ai-skills-hub` repository, give it "Contents: Read and write", and leave every other permission off.
+2. Open https://script.google.com, start a new project and paste in `apps-script/Code.gs`.
+3. In Project Settings, under Script properties, add `GITHUB_TOKEN` and paste the token as its value.
+4. Choose `setup` in the function menu, click Run and approve the permissions.
 
-Tell people on both forms that their name and department will appear publicly on the site.
+`setup` creates both forms, connects them to the doc and puts the form links on the website. The execution log prints the links to share and the links for editing the forms.
 
-Then for each form:
-
-1. In the form's Responses tab, link it to a Google Sheet.
-2. In the sheet, add a column to the right named `Status`.
-3. Choose File, then Share, then Publish to web. Pick the responses sheet and the CSV format, then copy the link.
-
-In this repo, open Settings, then Secrets and variables, then Actions, then the Variables tab. Add:
-
-- `ADD_FORM_CSV`: the CSV link for the "Add a skill" responses
-- `SUGGEST_FORM_CSV`: the CSV link for the "Suggest a change" responses
-
-Last, put the two form links (the ones people fill in) in `config.json` so the site's buttons open them.
+To push a doc edit right away instead of waiting up to 15 minutes, run `pushDoc` in the script editor.
 
 ## Notes
 
-- A published CSV can be read by anyone who has its link. Don't collect email addresses or anything private on these forms.
-- If someone submits a skill whose name matches an existing entry, the newer details replace the old ones and the entry shows "Updated by".
-- To edit the starting entries directly, change `data/seed.json`. The next sync rebuilds `data/skills.json`.
-- To test the sync locally: `ADD_FORM_CSV=... SUGGEST_FORM_CSV=... python3 scripts/sync.py`. It uses only the Python standard library.
-- Being listed here means a colleague found the skill useful. It does not mean the university has reviewed it for security. Skills that touch university systems carry a caution note.
+- Form answers go straight into the catalog with no approval step. To take something down, delete its line in the doc.
+- Contributor names and departments appear publicly on the site. The form descriptions tell people this.
+- Being listed means a colleague found the skill useful. It does not mean the university has security-reviewed it. Skills that touch university systems carry a caution note.
