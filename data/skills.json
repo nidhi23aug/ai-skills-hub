@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 16:48 UTC",
+  "synced": "2026-11-12 16:58 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -31,19 +31,8 @@
       "made_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": [
-        {
-          "skill": "Lightweight version of Google Paper",
-          "text": "Please remove this skill. It has no link or description.",
-          "by": "Test submission, Testing"
-        },
-        {
-          "skill": "Lightweight version of Google Paper",
-          "text": "Removal requested. No links please remove",
-          "by": "ABC, ODSI"
-        }
-      ],
-      "removal_requested": true
+      "suggestions": [],
+      "removal_requested": false
     },
     {
       "name": "Brag",
@@ -96,17 +85,6 @@
       "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review",
       "made_by": "K-Dense",
       "added_by": "Nidhi Jha",
-      "caution": false,
-      "suggestions": [],
-      "removal_requested": false
-    },
-    {
-      "name": "Brga",
-      "category": "Research",
-      "description": "Used for video",
-      "link": "",
-      "made_by": "",
-      "added_by": "Nidhi, ODSI Bga.com",
       "caution": false,
       "suggestions": [],
       "removal_requested": false
