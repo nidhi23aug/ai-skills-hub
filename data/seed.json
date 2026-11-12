@@ -11,10 +11,10 @@
     "caution": true
   },
   {
-    "name": "Travel Submission",
+    "name": "Travel Voucher Submission",
     "category": "Administrative for Research",
-    "description": "Puts together the reimbursement packet after the trip.",
-    "link": "https://github.com/nidhi23aug/uah-travel-skill",
+    "description": "Puts together the reimbursement packet after the trip. Coming soon.",
+    "link": "",
     "platform": "Claude Code",
     "made_by": "Nidhi Jha",
     "added_by": "Nidhi Jha",

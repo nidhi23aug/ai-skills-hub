@@ -64,7 +64,7 @@ Test the parser locally: `python3 scripts/sync.py` (reads `data/catalog-doc.txt`
 ## Open items
 
 - "Lightweight version of Google Paper" has no link or description yet. Ask the user which paper it is.
-- "Travel Submission" has no link in the doc; `seed.json` points it at `uah-travel-skill`, whose README covers the reimbursement packet.
+- "Travel Voucher Submission" (renamed from "Travel Submission") is marked "Coming soon" and has no link yet.
 - The form -> doc -> site path hasn't had a real end-to-end test submission yet.
 - An empty, unused "Untitled project" (script ID starting `1qE_0yEJ`) exists in the Gmail Apps Script list and can be trashed.
 - The user may want to share the doc with colleagues for direct editing, or link the forms to Sheets as a backup.
