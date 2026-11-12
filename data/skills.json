@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 07:47 UTC",
+  "synced": "2026-11-12 07:49 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -12,13 +12,13 @@
       "suggestions": []
     },
     {
-      "name": "Travel Submission",
+      "name": "Travel Voucher Submission",
       "category": "Administrative for Research",
-      "description": "",
+      "description": "Puts together the reimbursement packet after the trip. Coming soon.",
       "link": "",
-      "made_by": "",
-      "added_by": "",
-      "caution": false,
+      "made_by": "Nidhi Jha",
+      "added_by": "Nidhi Jha",
+      "caution": true,
       "suggestions": []
     },
     {
