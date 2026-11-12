@@ -16,3 +16,5 @@ Research
 General
 - CARE Lightweight - Create a new skill in a structured manner https://github.com/nidhi23aug/CARE-lightweight/ https://github.com/nidhi23aug/CARE-lightweight/tree/main
 - 
+Software and Development
+- lot-map - A live map beside the Claude Code chat that shows tool calls, model steps, hooks, skills and subagents as they happen - Added by Test submission, Testing https://github.com/alexeyw/lot-map
