@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 16:26 UTC",
+  "synced": "2026-11-12 16:48 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -36,9 +36,14 @@
           "skill": "Lightweight version of Google Paper",
           "text": "Please remove this skill. It has no link or description.",
           "by": "Test submission, Testing"
+        },
+        {
+          "skill": "Lightweight version of Google Paper",
+          "text": "Removal requested. No links please remove",
+          "by": "ABC, ODSI"
         }
       ],
-      "removal_requested": false
+      "removal_requested": true
     },
     {
       "name": "Brag",
