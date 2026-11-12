@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 07:14 UTC",
+  "synced": "2026-11-12 07:20 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -29,7 +29,13 @@
       "made_by": "",
       "added_by": "Nidhi Jha",
       "caution": false,
-      "suggestions": []
+      "suggestions": [
+        {
+          "skill": "Lightweight version of Google Paper",
+          "text": "Please remove this skill. It has no link or description.",
+          "by": "Test submission, Testing"
+        }
+      ]
     },
     {
       "name": "Brag",
