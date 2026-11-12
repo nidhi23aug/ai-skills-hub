@@ -20,6 +20,14 @@ function setup() {
   }
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
 
+  // Running setup again reuses the forms it made before instead of making duplicates.
+  const existingAdd = findForm('Add an AI skill you use');
+  const existingSug = findForm('Suggest a change to an AI skill');
+  if (existingAdd && existingSug) {
+    finishSetup(existingAdd, existingSug);
+    return;
+  }
+
   const add = FormApp.create('Add an AI skill you use')
     .setDescription('Share a skill, prompt or workflow you have used yourself and found useful. ' +
       'It appears in the AI Skills Hub catalog with your name and department within a few minutes.')
@@ -42,6 +50,19 @@ function setup() {
   sug.addTextItem().setTitle('Your name').setRequired(true);
   sug.addTextItem().setTitle('Department');
 
+  finishSetup(add, sug);
+}
+
+function findForm(title) {
+  const files = DriveApp.getFilesByName(title);
+  while (files.hasNext()) {
+    const f = files.next();
+    if (f.getMimeType() === MimeType.GOOGLE_FORMS && !f.isTrashed()) return FormApp.openById(f.getId());
+  }
+  return null;
+}
+
+function finishSetup(add, sug) {
   ScriptApp.newTrigger('onAddSkill').forForm(add).onFormSubmit().create();
   ScriptApp.newTrigger('onSuggest').forForm(sug).onFormSubmit().create();
   ScriptApp.newTrigger('pushDoc').timeBased().everyMinutes(15).create();
