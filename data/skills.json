@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 06:12 UTC",
+  "synced": "2026-11-12 07:14 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -88,6 +88,16 @@
       "link": "https://github.com/nidhi23aug/CARE-lightweight/",
       "made_by": "Nidhi Jha, based on NASA-IMPACT/AKD-CARE",
       "added_by": "Nidhi Jha",
+      "caution": false,
+      "suggestions": []
+    },
+    {
+      "name": "lot-map",
+      "category": "Software and Development",
+      "description": "A live map beside the Claude Code chat that shows tool calls, model steps, hooks, skills and subagents as they happen",
+      "link": "https://github.com/alexeyw/lot-map",
+      "made_by": "",
+      "added_by": "Test submission, Testing",
       "caution": false,
       "suggestions": []
     }
