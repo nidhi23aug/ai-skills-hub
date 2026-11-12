@@ -1,5 +1,5 @@
 {
-  "synced": "2026-11-12 07:39 UTC",
+  "synced": "2026-11-12 07:47 UTC",
   "skills": [
     {
       "name": "Travel Authorization",
@@ -14,11 +14,11 @@
     {
       "name": "Travel Submission",
       "category": "Administrative for Research",
-      "description": "Puts together the reimbursement packet after the trip.",
-      "link": "https://github.com/nidhi23aug/uah-travel-skill",
-      "made_by": "Nidhi Jha",
-      "added_by": "Nidhi Jha",
-      "caution": true,
+      "description": "",
+      "link": "",
+      "made_by": "",
+      "added_by": "",
+      "caution": false,
       "suggestions": []
     },
     {
