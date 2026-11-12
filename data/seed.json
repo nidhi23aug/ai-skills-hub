@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Travel Authorization",
+    "category": "Administrative for Research",
+    "description": "Works out allowable trip costs, takes proof screenshots and fills the Kuali travel authorization as a draft for you to submit.",
+    "link": "https://github.com/nidhi23aug/uah-travel-skill",
+    "platform": "Claude Code with Chrome",
+    "made_by": "Nidhi Jha",
+    "added_by": "Nidhi Jha",
+    "limitations": "Personal project, not an official UAH tool. It never submits a form or pays for anything.",
+    "caution": true
+  },
+  {
+    "name": "Travel Submission",
+    "category": "Administrative for Research",
+    "description": "Puts together the reimbursement packet after the trip.",
+    "link": "https://github.com/nidhi23aug/uah-travel-skill",
+    "platform": "Claude Code",
+    "made_by": "Nidhi Jha",
+    "added_by": "Nidhi Jha",
+    "limitations": "Part of the UAH travel skill. UAH Business Services has the final say.",
+    "caution": true
+  },
+  {
+    "name": "Lightweight version of Google Paper",
+    "category": "Research",
+    "description": "",
+    "link": "",
+    "platform": "",
+    "made_by": "",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "Brag",
+    "category": "Research",
+    "description": "Turns the project you built into a short launch video with music and share copy.",
+    "link": "https://github.com/latent-spaces/brag",
+    "platform": "Claude Code",
+    "made_by": "latent-spaces",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "Diagram/Sketch Generator",
+    "category": "Research",
+    "description": "Turns scientific text into a checked illustration plan, an image prompt and an SVG or image.",
+    "link": "https://github.com/NASA-IMPACT/akd-scientific-illustration/blob/main/Version2/final_prompt_v2.md",
+    "platform": "Any chat model (prompt)",
+    "made_by": "NASA-IMPACT",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "Humanizer",
+    "category": "Research",
+    "description": "Makes AI-written text sound like a person wrote it, without changing what it says.",
+    "link": "https://github.com/blader/humanizer",
+    "platform": "Claude Code, Codex",
+    "made_by": "blader",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "Literature Review",
+    "category": "Research",
+    "description": "Systematic, scoping and narrative reviews from PubMed, arXiv and Semantic Scholar.",
+    "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review",
+    "platform": "Claude Code",
+    "made_by": "K-Dense",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "Peer Review",
+    "category": "Research",
+    "description": "Drafts a structured review of a manuscript or proposal.",
+    "link": "https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review",
+    "platform": "Claude Code",
+    "made_by": "K-Dense",
+    "added_by": "Nidhi Jha"
+  },
+  {
+    "name": "CARE Lightweight",
+    "category": "General",
+    "description": "Design a new agent or skill in a structured way in about 20 minutes.",
+    "link": "https://github.com/nidhi23aug/CARE-lightweight/",
+    "platform": "Claude Code",
+    "made_by": "Nidhi Jha, based on NASA-IMPACT/AKD-CARE",
+    "added_by": "Nidhi Jha"
+  }
+]

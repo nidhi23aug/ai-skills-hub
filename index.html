@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>University AI Skills Hub</title>
+<meta name="description" content="A community directory of AI skills colleagues actually use. Anyone can add one through a short form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#14231f; --muted:#5a6b66; --line:#d6dedb;
+  --accent:#1f6f5c; --accent-ink:#ffffff; --accent-soft:#dcece6;
+  --flag:#a4441f; --flag-soft:#f7e3d9;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0f1715; --surface:#16211e; --ink:#e3ece9; --muted:#9aaca6; --line:#2a3a35;
+  --accent:#5fc3a6; --accent-ink:#06241c; --accent-soft:#1d3a32;
+  --flag:#f0a07c; --flag-soft:#3a2219; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.wrap{padding-block:36px 8px;display:flex;flex-wrap:wrap;gap:24px;align-items:end;justify-content:space-between}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(30px,5vw,46px)/1.05 var(--display);margin:6px 0 10px;text-wrap:balance;max-width:16ch}
+.lede{color:var(--muted);max-width:56ch;margin:0}
+.counts{display:flex;gap:10px;flex-wrap:wrap}
+.count{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;min-width:110px}
+.count b{display:block;font:700 26px var(--display);font-variant-numeric:tabular-nums}
+.count span{font-size:12px;color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-block:20px}
+.search{flex:1 1 280px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+.search input{border:0;background:transparent;color:var(--ink);font:inherit;padding:12px 0;width:100%;outline:none}
+.search:focus-within{border-color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.btn{display:inline-block;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:11px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.chip:focus-visible,.card:focus-visible,input:focus-visible,.close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:18px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;padding-bottom:28px}
+.card{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink);min-width:0}
+.card:hover{border-color:var(--accent)}
+.card h3{font:600 18px/1.2 var(--display);margin:0}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.meta{font:12px var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:auto}
+.tag{font:500 11px var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);width:fit-content}
+.empty{color:var(--muted);padding:24px 0}
+.contrib{border-top:1px solid var(--line);padding-block:28px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.contrib h2{font:700 24px var(--display);margin:0 0 4px}
+.contrib p{margin:0;color:var(--muted);max-width:60ch}
+footer{color:var(--muted);font:12px var(--mono);padding-block:8px 32px}
+dialog{border:0;padding:0;background:var(--surface);color:var(--ink);width:min(560px,100vw);max-width:100vw;height:100%;max-height:100%;margin:0 0 0 auto;box-shadow:-12px 0 40px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(10,20,17,.45)}
+.drawer{padding:24px max(20px,env(safe-area-inset-right,0px)) 32px 24px;display:flex;flex-direction:column;gap:14px}
+.drawer h2{font:700 26px/1.15 var(--display);margin:0}
+.close{align-self:flex-end;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:4px 10px}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 16px;margin:0}
+dt{font:12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+dd{margin:0;min-width:0;overflow-wrap:anywhere}
+a{color:var(--accent)}
+.caution{background:var(--flag-soft);color:var(--flag);border-radius:10px;padding:10px 12px;font-size:13px;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.sugg{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sugg h3{font:600 16px var(--display);margin:0}
+.sugg p{margin:0}
+.sugg small{color:var(--muted);font:12px var(--mono)}
+.note{font-size:13px;color:var(--muted);margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr}dt{padding-top:6px}}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div>
+    <div class="eyebrow">University AI Skills Hub</div>
+    <h1>Discover useful skills. Share what works.</h1>
+    <p class="lede">AI skills, prompts and workflows that colleagues across the university actually use. Anyone can add one through a short form. You don't need a GitHub account.</p>
+  </div>
+  <div class="counts" id="counts"></div>
+</header>
+
+<main class="wrap">
+  <div class="bar">
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search skills, tasks, or tools" aria-label="Search skills">
+    </div>
+    <a class="btn" data-form="add" href="#" target="_blank" rel="noopener">Add a skill you use</a>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No skills match that search. Try another word, or add the skill yourself.</p>
+
+  <section class="contrib">
+    <div>
+      <h2>Using something helpful?</h2>
+      <p>Share it in a short form. Paste a link, a prompt or instructions. Once it's checked, it shows up here with your name.</p>
+    </div>
+    <a class="btn" data-form="add" href="#" target="_blank" rel="noopener">Add a skill you use</a>
+  </section>
+  <footer id="foot"></footer>
+</main>
+
+<dialog id="detail" aria-labelledby="dTitle"><div class="drawer" id="detailBody"></div></dialog>
+
+<script>
+const CATS=["Research","Administrative for Research","General","Teaching and Education","Software and Development"];
+let skills=[],filter="All",forms={add:"",suggest:""};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function catsInUse(){const extra=[...new Set(skills.map(s=>s.category))].filter(c=>!CATS.includes(c));return [...CATS,...extra].filter(c=>skills.some(s=>s.category===c));}
+function renderCounts(){$("counts").innerHTML=catsInUse().slice(0,3).map(c=>`<div class="count"><b>${skills.filter(s=>s.category===c).length}</b><span>${esc(c)}</span></div>`).join("");}
+function renderChips(){$("chips").innerHTML=["All",...catsInUse()].map(c=>`<button class="chip" aria-pressed="${c===filter}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");}
+function renderGrid(){
+  const q=$("q").value.trim().toLowerCase();
+  const list=skills.map((s,i)=>({...s,i})).filter(s=>(filter==="All"||s.category===filter)&&(!q||[s.name,s.category,s.description,s.platform,s.made_by,s.added_by].join(" ").toLowerCase().includes(q)));
+  $("grid").innerHTML=list.map(s=>`<button class="card" data-i="${s.i}">
+    <span class="tag">${esc(s.category)}</span>
+    <h3>${esc(s.name)}</h3><p>${esc(s.description||"Details coming soon.")}</p>
+    <span class="meta">${s.added_by?`<span>Added by ${esc(s.added_by)}</span>`:""}${s.suggestions?.length?`<span>${s.suggestions.length} suggestion${s.suggestions.length>1?"s":""}</span>`:""}</span>
+  </button>`).join("");
+  $("empty").hidden=list.length>0;
+}
+function render(){renderCounts();renderChips();renderGrid();}
+
+function openDetail(i){
+  const s=skills[i];
+  const link=/^https?:\/\//.test(s.link||"")?`<a href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.link.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a>`:esc(s.link||"Link coming soon");
+  const row=(k,v)=>v?`<dt>${k}</dt><dd>${esc(v)}</dd>`:"";
+  $("detailBody").innerHTML=`<button class="close" type="button" data-close>Close</button>
+    <span class="tag">${esc(s.category)}</span>
+    <h2 id="dTitle">${esc(s.name)}</h2>
+    <p style="margin:0">${esc(s.description||"Details coming soon.")}</p>
+    <dl>
+      <dt>Get it</dt><dd>${link}</dd>
+      ${row("Platform",s.platform)}${row("Made by",s.made_by)}${row("Added by",s.added_by)}${row("Updated by",s.updated_by)}
+      ${row("How it's used",s.how)}${row("Limitations",s.limitations)}${row("Date added",s.added)}
+    </dl>
+    ${s.caution?'<p class="caution">This skill works with university systems. Community contributed does not mean security approved, so follow university IT and data policies before using it with university accounts or data.</p>':""}
+    <div class="actions"><a class="btn ghost" data-form="suggest" href="#" target="_blank" rel="noopener">Suggest a change or report a problem</a></div>
+    ${s.suggestions?.length?`<div class="sugg"><h3>Suggestions from colleagues</h3>${s.suggestions.map(x=>`<div><p>${esc(x.text)}</p><small>Suggested by ${esc(x.by)}${x.date?` · ${esc(x.date)}`:""}</small></div>`).join("")}</div>`:""}`;
+  wireForms();
+  $("detail").showModal();
+}
+function wireForms(){
+  document.querySelectorAll("[data-form]").forEach(a=>{
+    const url=forms[a.dataset.form];
+    if(url){a.href=url;a.removeAttribute("aria-disabled");a.title="";}
+    else{a.href="#";a.setAttribute("aria-disabled","true");a.title="The form link isn't set up yet";a.onclick=e=>{if(!forms[a.dataset.form]){e.preventDefault();}};}
+  });
+}
+
+$("q").addEventListener("input",renderGrid);
+$("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filter=b.dataset.cat;renderChips();renderGrid();});
+$("grid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openDetail(+c.dataset.i);});
+document.addEventListener("click",e=>{if(e.target.matches("[data-close]"))e.target.closest("dialog").close();});
+$("detail").addEventListener("click",e=>{if(e.target===$("detail"))$("detail").close();});
+
+Promise.all([
+  fetch("data/skills.json",{cache:"no-store"}).then(r=>r.json()),
+  fetch("config.json",{cache:"no-store"}).then(r=>r.json()).catch(()=>({}))
+]).then(([data,cfg])=>{
+  skills=data.skills||[];
+  forms={add:cfg.addFormUrl||"",suggest:cfg.suggestFormUrl||""};
+  $("foot").textContent=`${skills.length} skills · catalog last synced ${data.synced||"unknown"}`;
+  render();wireForms();
+}).catch(()=>{$("grid").innerHTML='<p class="empty">The catalog could not load. Refresh the page to try again.</p>';});
+</script>
+</body>
+</html>
