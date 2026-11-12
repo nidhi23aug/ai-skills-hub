@@ -9,6 +9,7 @@ Research
 - Humanizer - Makes AI-written text sound like a person wrote it, without changing what it says. - Added by Nidhi Jha https://github.com/blader/humanizer
 - Literature Review - Systematic, scoping and narrative reviews from PubMed, arXiv and Semantic Scholar. - Added by Nidhi Jha https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review
 - Peer Review - Drafts a structured review of a manuscript or proposal. - Added by Nidhi Jha https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review
+- Brga - Used for video - Added by Nidhi, ODSI Bga.com
 
 
 General
